@@ -1,0 +1,35 @@
+body {
+  background-color: $bg-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  h2 {
+    font-size: 1.3rem;
+    margin-top: 2rem;
+  }
+  .game {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5rem;
+    min-width: 280px;
+    min-height: 200px;
+    button {
+      background-color: transparent;
+      border: none;
+      font-size: 30px;
+      font-weight: bold;
+      border: 0.1rem solid transparentize($text-color, 0.5);
+      border-radius: 0.2rem;
+      cursor: pointer;
+      &:hover {
+        border-color: $text-color;
+      }
+    }
+  }
+}
