@@ -15,10 +15,26 @@ body {
     font-size: 1.5rem;
     margin-top: 2rem;
   }
+  .game button:nth-child(1), .game button:nth-child(4) {
+    border-right: .1rem solid $text-color;
+    border-bottom: .1rem solid $text-color;
+  }
+  .game button:nth-child(2), .game button:nth-child(5) {
+    border-bottom: .1rem solid $text-color;
+  }
+  .game button:nth-child(3), .game button:nth-child(6) {
+    border-left: .1rem solid $text-color;
+    border-bottom: .1rem solid $text-color;
+  }
+  .game button:nth-child(7) {
+    border-right: .1rem solid $text-color;
+  }
+  .game button:nth-child(9) {
+    border-left: .1rem solid $text-color;
+  }
   .game {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 0.5rem;
     min-width: 24rem;
     height: 16rem;
     @include mobile {
@@ -34,8 +50,6 @@ body {
       min-height: 3.1rem;
       font-size: 1.9rem;
       font-weight: bold;
-      border: 0.1rem solid transparentize($text-color, 0.5);
-      border-radius: 0.2rem;
       cursor: pointer;
       &:hover {
         border-color: $text-color;
