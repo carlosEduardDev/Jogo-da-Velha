@@ -2,7 +2,7 @@
 <p><b>Clássico jogo da velha para jogar com 2 players!</b></p>
 
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://shields.io/)
-<a href=""> Visite o projeto! </a>
+<a href="jogo-da-velha-grey.vercel.app"> Visite o projeto! </a>
 
 <h2 id="tecnologias">Técnologias Usadas:</h2>
 
