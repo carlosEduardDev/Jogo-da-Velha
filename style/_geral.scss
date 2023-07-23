@@ -21,8 +21,15 @@ body {
     gap: 0.5rem;
     min-width: 24rem;
     height: 16rem;
+    @include mobile {
+      min-width: 20rem;
+    }
     button {
       background-color: transparent;
+      background-position: center;
+      background-size: cover;
+      background-size: 3.1rem;
+      background-repeat: no-repeat;
       border: none;
       min-height: 3.1rem;
       font-size: 1.9rem;
@@ -41,18 +48,22 @@ body {
       }
     }
   }
-  a{
-    width: 5rem;
+  a {
+    background-color: $bg-color;
+    width: 8rem;
     height: 5rem;
-    background-color: rgb(0, 137, 161);
+    border: 0.1rem solid $text-color;
     background-image: url(../assets/github.png);
-    background-position: 27px 50px;
-    background-size: 25px;
+    background-position: 3.5rem 3rem;
+    background-size: 1.5rem;
     background-repeat: no-repeat;
     position: absolute;
-    right: -40px;
-    top: -40px;
+    right: -3rem;
+    top: -2rem;
     transform: rotate(45deg);
     cursor: pointer;
+    &:hover {
+      filter: invert(100%);
+    }
   }
 }

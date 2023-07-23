@@ -1,6 +1,12 @@
 $bg-color: rgb(221, 214, 214);
 $text-color: rgb(0, 0, 0);
 
+@mixin mobile {
+  @media (max-width:600px) {
+    @content;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;

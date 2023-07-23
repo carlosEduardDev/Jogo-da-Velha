@@ -33,59 +33,62 @@ class Game {
     setTimeout(() => {
       for (let pos of this.winningPositions) {
         if (pos.every((item) => itens.includes(item))) {
-          if (this.turn) {
-            this.turn.innerText =
-              "o jogador " + this.currentPlayer + " ganhou !";
-            this.markupFields.forEach((btn) => {
-              btn.removeEventListener("click", this.turnPlayer);
-              setTimeout(() => {
-                this.init();
-                this.currentPlayer = "X";
-                this.heldPositions = [];
-                this.markupFields.forEach((btn) => {
-                  btn.innerText = "";
-                  if (this.turn) this.turn.innerText = "Vez do Jogador: O";
-                  btn.classList.remove("filled");
-                });
-              }, 2000);
-            });
-          }
+          this.finishGame();
         }
       }
-      if (this.heldPositions.filter((item: number) => item).length === 9) {
-        if (this.turn) this.turn.innerText = "EMPATE";
+      this.aTie();
+    }, 200);
+  }
+
+  finishGame() {
+    if (this.turn) {
+      this.turn.innerText = "o jogador " + this.currentPlayer + " ganhou !";
+      this.markupFields.forEach((btn) => {
+        btn.removeEventListener("click", this.turnPlayer);
         setTimeout(() => {
           this.init();
           this.currentPlayer = "X";
           this.heldPositions = [];
+          if (this.turn) this.turn.innerText = "Vez do Jogador: O";
           this.markupFields.forEach((btn) => {
-            btn.innerText = "";
+            btn.style.backgroundImage = "";
             btn.classList.remove("filled");
           });
-          if (this.turn) this.turn.innerText = "Vez do Jogador: O";
         }, 2000);
-      }
-    }, 200);
+      });
+    }
+  }
+
+  aTie() {
+    if (this.heldPositions.filter((item: number) => item).length === 9) {
+      if (this.turn) this.turn.innerText = "Empate";
+      setTimeout(() => {
+        this.init();
+        this.currentPlayer = "X";
+        this.heldPositions = [];
+        if (this.turn) this.turn.innerText = "Vez do Jogador: O";
+        this.markupFields.forEach((btn) => {
+          btn.style.backgroundImage = "";
+          btn.classList.remove("filled");
+        });
+      }, 2000);
+    }
   }
 
   turnPlayer({ currentTarget }: Event) {
-    if (
-      this.currentPlayer === "X" &&
-      currentTarget instanceof HTMLButtonElement
-    ) {
-      this.currentPlayer = "O";
-      currentTarget.style.color = "rgb(0, 137, 161)";
-    } else {
-      this.currentPlayer = "X";
-      if (currentTarget instanceof HTMLButtonElement)
-        currentTarget.style.color = "rgb(219, 40, 40)";
-    }
+    this.currentPlayer === "X"
+      ? (this.currentPlayer = "O")
+      : (this.currentPlayer = "X");
 
     if (currentTarget instanceof HTMLButtonElement && this.turn) {
       this.turn.innerText = `Vez do Jogador: ${
         this.currentPlayer === "X" ? "O" : "X"
       }`;
-      currentTarget.innerText = this.currentPlayer;
+      if (this.currentPlayer === "X") {
+        currentTarget.style.backgroundImage = "url(../assets/x.png)";
+      } else if (this.currentPlayer === "O") {
+        currentTarget.style.backgroundImage = "url(../assets/o.png)";
+      }
       currentTarget.classList.add("filled");
       currentTarget.removeEventListener("click", this.turnPlayer);
 
