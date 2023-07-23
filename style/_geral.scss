@@ -17,18 +17,25 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 0.5rem;
-    min-width: 280px;
-    min-height: 200px;
+    min-width: 17.5rem;
+    height: 12.5rem;
     button {
       background-color: transparent;
       border: none;
-      font-size: 30px;
+      min-height: 3.1rem;
+      font-size: 1.9rem;
       font-weight: bold;
       border: 0.1rem solid transparentize($text-color, 0.5);
       border-radius: 0.2rem;
       cursor: pointer;
       &:hover {
         border-color: $text-color;
+      }
+      &.filled {
+        cursor: default;
+      }
+      &.filled:hover {
+        border-color: transparentize($text-color, 0.5);
       }
     }
   }
