@@ -9,28 +9,38 @@ body {
   overflow-y: hidden;
   h1 {
     font-size: 2.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
-  h2 {
+  .turn {
     font-size: 1.5rem;
-    margin-top: 2rem;
+    margin-top: 3rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    img {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
-  .game button:nth-child(1), .game button:nth-child(4) {
-    border-right: .1rem solid $text-color;
-    border-bottom: .1rem solid $text-color;
+  .game button:nth-child(1),
+  .game button:nth-child(4) {
+    border-right: 0.1rem solid $text-color;
+    border-bottom: 0.1rem solid $text-color;
   }
-  .game button:nth-child(2), .game button:nth-child(5) {
-    border-bottom: .1rem solid $text-color;
+  .game button:nth-child(2),
+  .game button:nth-child(5) {
+    border-bottom: 0.1rem solid $text-color;
   }
-  .game button:nth-child(3), .game button:nth-child(6) {
-    border-left: .1rem solid $text-color;
-    border-bottom: .1rem solid $text-color;
+  .game button:nth-child(3),
+  .game button:nth-child(6) {
+    border-left: 0.1rem solid $text-color;
+    border-bottom: 0.1rem solid $text-color;
   }
   .game button:nth-child(7) {
-    border-right: .1rem solid $text-color;
+    border-right: 0.1rem solid $text-color;
   }
   .game button:nth-child(9) {
-    border-left: .1rem solid $text-color;
+    border-left: 0.1rem solid $text-color;
   }
   .game {
     display: grid;
@@ -78,6 +88,24 @@ body {
     cursor: pointer;
     &:hover {
       filter: invert(100%);
+    }
+  }
+  .score {
+    display: flex;
+    align-items: center;
+    margin-top: 3rem;
+    gap: 5rem;
+    p {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.7rem;
+      img {
+        width: 1.5rem;
+      }
+      span {
+        font-size: 1.5rem;
+      }
     }
   }
 }

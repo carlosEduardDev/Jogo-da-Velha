@@ -1,112 +1,127 @@
-class Game {
-  markupFields: HTMLButtonElement[];
-  currentPlayer: string;
-  winningPositions: number[][];
-  heldPositions: number[] | string[];
-  turn: HTMLHeadElement | null;
-  constructor(markupFields: string, turn: string) {
-    this.markupFields = Array.from(document.querySelectorAll(markupFields));
-    this.currentPlayer = "X";
-    this.turn = document.querySelector(turn);
-    this.winningPositions = [
-      [1, 2, 3],
-      [1, 4, 7],
-      [1, 5, 9],
-      [2, 5, 8],
-      [3, 5, 7],
-      [3, 6, 9],
-      [4, 5, 6],
-      [7, 8, 9],
-    ];
-    this.heldPositions = [];
+const markupFields: HTMLButtonElement[] = Array.from(
+  document.querySelectorAll(".game button")
+);
+const turn = document.querySelector(".turn");
+const imgTurn = turn?.querySelector("img");
+const positions = [
+  [1, 2, 3],
+  [1, 4, 7],
+  [1, 5, 9],
+  [2, 5, 8],
+  [3, 5, 7],
+  [3, 6, 9],
+  [4, 5, 6],
+  [7, 8, 9],
+];
 
-    this.turnPlayer = this.turnPlayer.bind(this);
-  }
+let scoreX = document.querySelector(".scoreX");
+let scoreO = document.querySelector(".scoreO");
+let x = 1;
+let o = 1;
+let heldPositions: any[] | number[] = [];
+let currentPlayer = "X";
 
-  checkWinner(btn: HTMLButtonElement) {
-    this.heldPositions[Number(btn.dataset.i)] = this.currentPlayer;
-    const itens = this.heldPositions
-      .map((item, i) => [item, i])
-      .filter((item) => item[0] === this.currentPlayer)
-      .map((item) => item[1]);
+const addEvents = (fields: HTMLButtonElement[]) => {
+  fields.forEach((btn) => {
+    btn.addEventListener("click", turnPlayer);
+  });
+};
 
-    setTimeout(() => {
-      for (let pos of this.winningPositions) {
-        if (pos.every((item) => itens.includes(item))) {
-          this.finishGame();
-        }
-      }
-      this.aTie();
-    }, 200);
-  }
+function turnPlayer({ currentTarget }: Event) {
+  currentPlayer === "X" ? (currentPlayer = "O") : (currentPlayer = "X");
 
-  finishGame() {
-    if (this.turn) {
-      this.turn.innerText = "o jogador " + this.currentPlayer + " ganhou !";
-      this.markupFields.forEach((btn) => {
-        btn.removeEventListener("click", this.turnPlayer);
-        setTimeout(() => {
-          this.init();
-          this.currentPlayer = "X";
-          this.heldPositions = [];
-          if (this.turn) this.turn.innerText = "Vez do Jogador: O";
-          this.markupFields.forEach((btn) => {
-            btn.style.backgroundImage = "";
-            btn.classList.remove("filled");
-          });
-        }, 2000);
-      });
+  if (currentTarget instanceof HTMLButtonElement && turn && imgTurn) {
+    turn.innerHTML = `Vez do Jogador: <img src="${
+      currentPlayer === "X"
+        ? (imgTurn.src = "../assets/o.png")
+        : (imgTurn.src = "../assets/x.png")
+    }" alt="player"/>`;
+
+    if (imgTurn instanceof HTMLImageElement && currentPlayer === "X") {
+      currentTarget.style.backgroundImage = "url(../assets/x.png)";
+      imgTurn.src = "../assets/x.png";
+    } else if (currentPlayer === "O" && imgTurn instanceof HTMLImageElement) {
+      currentTarget.style.backgroundImage = "url(../assets/o.png)";
+      imgTurn.src = "../assets/o.png";
     }
-  }
 
-  aTie() {
-    if (this.heldPositions.filter((item: number) => item).length === 9) {
-      if (this.turn) this.turn.innerText = "Empate";
-      setTimeout(() => {
-        this.init();
-        this.currentPlayer = "X";
-        this.heldPositions = [];
-        if (this.turn) this.turn.innerText = "Vez do Jogador: O";
-        this.markupFields.forEach((btn) => {
-          btn.style.backgroundImage = "";
-          btn.classList.remove("filled");
-        });
-      }, 2000);
-    }
-  }
+    currentTarget.classList.add("filled");
+    currentTarget.removeEventListener("click", turnPlayer);
 
-  turnPlayer({ currentTarget }: Event) {
-    this.currentPlayer === "X"
-      ? (this.currentPlayer = "O")
-      : (this.currentPlayer = "X");
-
-    if (currentTarget instanceof HTMLButtonElement && this.turn) {
-      this.turn.innerText = `Vez do Jogador: ${
-        this.currentPlayer === "X" ? "O" : "X"
-      }`;
-      if (this.currentPlayer === "X") {
-        currentTarget.style.backgroundImage = "url(../assets/x.png)";
-      } else if (this.currentPlayer === "O") {
-        currentTarget.style.backgroundImage = "url(../assets/o.png)";
-      }
-      currentTarget.classList.add("filled");
-      currentTarget.removeEventListener("click", this.turnPlayer);
-
-      this.checkWinner(currentTarget);
-    }
-  }
-
-  addEvents(fields: HTMLButtonElement[]) {
-    fields.forEach((btn) => {
-      btn.addEventListener("click", this.turnPlayer);
-    });
-  }
-
-  init() {
-    this.addEvents(this.markupFields);
-    return this;
+    checkWinner(currentTarget);
   }
 }
 
-const game = new Game("button", "h2");
-game.init();
+function checkWinner(btn: HTMLButtonElement) {
+  heldPositions[Number(btn.dataset.i)] = currentPlayer;
+  const itens = heldPositions
+    .map((item, i) => [item, i])
+    .filter((item) => item[0] === currentPlayer)
+    .map((item) => item[1]);
+  tie();
+  for (const pos of positions) {
+    if (pos.every((item) => itens.includes(item))) {
+      finishGame();
+    }
+  }
+}
+
+function finishGame() {
+  if (
+    turn &&
+    imgTurn &&
+    scoreO instanceof HTMLElement &&
+    scoreX instanceof HTMLElement
+  ) {
+    turn.innerHTML = `O jogador <img src="${
+      currentPlayer === "X"
+        ? (imgTurn.src = "../assets/x.png")
+        : (imgTurn.src = "../assets/o.png")
+    }" alt="player"/> venceu!`;
+    currentPlayer === "X"
+      ? (scoreX.innerText = String(x++))
+      : (scoreO.innerText = String(o++));
+    markupFields.forEach((btn) => {
+      btn.removeEventListener("click", turnPlayer);
+      setTimeout(() => {
+        addEvents(markupFields);
+        currentPlayer = "X";
+        heldPositions = [];
+        if (turn && imgTurn)
+          turn.innerHTML = `Vez do Jogador: <img src="${
+            currentPlayer === "X"
+              ? (imgTurn.src = "../assets/o.png")
+              : (imgTurn.src = "../assets/x.png")
+          }" alt="player"/>`;
+        markupFields.forEach((btn) => {
+          btn.style.backgroundImage = "";
+          btn.classList.remove("filled");
+        });
+      }, 1500);
+    });
+  }
+}
+
+function tie() {
+  if (heldPositions.filter((item: number) => item).length === 9) {
+    if (turn instanceof HTMLElement) turn.innerText = "Empate";
+
+    setTimeout(() => {
+      addEvents(markupFields);
+      currentPlayer = "X";
+      heldPositions = [];
+      if (turn && imgTurn)
+        turn.innerHTML = `Vez do Jogador: <img src="${
+          currentPlayer === "X"
+            ? (imgTurn.src = "../assets/o.png")
+            : (imgTurn.src = "../assets/x.png")
+        }" alt="player"/>`;
+      markupFields.forEach((btn) => {
+        btn.style.backgroundImage = "";
+        btn.classList.remove("filled");
+      });
+    }, 1500);
+  }
+}
+
+addEvents(markupFields);
