@@ -12,7 +12,6 @@
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
    <img src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white"/>
   	<img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white"/>
-</p>
 
 <img src="https://i.ibb.co/VS3LkSg/Jogo-da-Velha-Google-Chrome-23-07-2023-14-21-56.png"/>
 
