@@ -9,6 +9,7 @@
 <h2 id="tecnologias">Técnologias Usadas:</h2>
 
 <p> Todo o projeto foi feito do zero com HTML, SCSS e TYPESCRIPT</p>
+<p> Para jogar basta clicar na tela.</p>p
 
 <p>
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
