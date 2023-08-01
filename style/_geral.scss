@@ -50,11 +50,16 @@ body {
     @include mobile {
       min-width: 20rem;
     }
+    @keyframes scale {
+      to {
+        background-size: 3.1rem;
+      }
+    }
     button {
       background-color: transparent;
       background-position: center;
       background-size: cover;
-      background-size: 3.1rem;
+      background-size: 2rem;
       background-repeat: no-repeat;
       border: none;
       min-height: 3.1rem;
@@ -66,6 +71,7 @@ body {
       }
       &.filled {
         cursor: default;
+        animation: scale .3s forwards linear;
       }
       &.filled:hover {
         border-color: transparentize($text-color, 0.5);

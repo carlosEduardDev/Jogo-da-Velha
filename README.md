@@ -2,7 +2,8 @@
 <p><b>Clássico jogo da velha para jogar com 2 players!</b></p>
 
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://shields.io/)
-<a href="https://jogodavelha1.vercel.app"> Visite o projeto! </a>
+<a href="https://jogodavelha1.vercel.app" target="_blank"> Visite o projeto! </a>
+<a href="https://docjogodavelha.vercel.app/" target="_blank"> Aprenda a desenvolver o jogo da velha com esse tutorial!</a>
 
 <h2 id="tecnologias">Técnologias Usadas:</h2>
 
@@ -15,7 +16,6 @@
 </p>
 
 <img src="https://i.ibb.co/VS3LkSg/Jogo-da-Velha-Google-Chrome-23-07-2023-14-21-56.png"/>
-
 
 <h2>Autor do Projeto:</h2>
 
