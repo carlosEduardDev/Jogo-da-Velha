@@ -3,6 +3,7 @@
 
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://shields.io/)
 <a href="https://jogodavelha1.vercel.app" target="_blank"> Visite o projeto! </a> <br>
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://shields.io/)
 <a href="https://docjogodavelha.vercel.app/" target="_blank"> Aprenda a desenvolver o jogo da velha com esse tutorial!</a>
 
 <h2 id="tecnologias">Técnologias Usadas:</h2>
